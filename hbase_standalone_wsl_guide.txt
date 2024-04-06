@@ -1,0 +1,65 @@
+Prerequisites 
+=============================
+WSL
+Java
+(Refer Hadoop guide if both are not installed)
+
+Prerequisite Test
+=============================
+sudo apt update
+java -version
+javac -version
+if not: 
+	sudo apt install openjdk-11-jdk -y
+
+Downloading HBase
+===============================
+# If wget doesn't connect i.e. doesn't show 'Connecting to dlcdn.apache.org (dlcdn.apache.org)|151.101.2.132|:443... connected.' 
+# or shows 'HTTP request sent, awaiting response...' but doesn't show a progress bar of download press 'ctrl + c' and enter cmd again
+
+wget https://dlcdn.apache.org/hbase/2.5.8/hbase-2.5.8-hadoop3-bin.tar.gz
+
+# A standalone instance has all HBase daemons — the Master, RegionServers, and ZooKeeper — running in a single JVM persisting to the local filesystem.
+# In standalone mode HBase runs all daemons within this single JVM, i.e. the HMaster, a single HRegionServer, and the ZooKeeper daemon
+# It is the most basic deploy profile.
+
+Extract the downloaded file, and change to the newly-created directory.
+===============================
+tar xzf hbase-2.5.8-hadoop3-bin.tar.gz
+cd hbase-2.5.8-hadoop3/
+
+Change the following files
+===============================
+nano conf/hbase-env.sh
+
+# Add below line after the line in the file '# The java implementation to use.  Java 1.8+ required.'
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+
+Launching HBase
+===============================
+
+# To open HBase Web UI.
+./bin/hbase shell
+# Open http://localhost:16010/ in your browser (installed on windows or wsl)
+# It should display the HBase Web UI.
+
+# You can use the jps command to verify that you have one running process called HMaster
+jps 
+# expected output (numbers can vary)
+691 HMaster
+2005 Jps
+
+# To open the Hbase Shell
+./bin/hbase shell
+
+# expected output (numbers can vary)
+HBase Shell
+Use "help" to get list of supported commands.
+Use "exit" to quit this interactive shell.
+For Reference, please visit: http://hbase.apache.org/2.0/book.html#shell
+Version 2.5.8-hadoop3, r37444de6531b1bdabf2e445c83d0268ab1a6f919, Thu Feb 29 15:55:21 PST 2024
+Took 0.0038 seconds
+hbase:001:0>
+
+
