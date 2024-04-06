@@ -1,0 +1,85 @@
+# It is preferable to install pyspark in a virtual env
+Prerequisites 
+=============================
+WSL
+Python
+Pip
+
+Prerequisite Test
+=============================
+sudo apt update
+python --version
+pip --version
+
+Installing VSCode to make running code easier and in a familiar environment
+The simplest way using snap-package
+=============================
+
+sudo snap install --classic code
+
+# the --classic flag indicates that the snap package being installed (in this case, "code") will be granted additional permissions beyond what is typically allowed for snap packages.
+# the --classic flag is used because Visual Studio Code often requires access to files and directories outside of its confined environment, such as project files and system configuration files.
+
+# Check installation
+code --version
+
+Install Virtualenv
+=============================
+pip install virtualenv
+virtualenv --version
+
+Create a project folder in which you will use the virtual env
+=============================
+mkdir pyspark
+cd pyspark
+
+Create a virtual environment
+=============================
+virtualenv env
+
+# folder named env will be created. 
+# NOTE: If you create a git repository in this directory, remember to add 'env' folder to the .gitignore file
+
+# If you want to create a virtualenv for specific python version, type
+virtualenv -p /usr/bin/python3 env
+
+
+Activate the virtual env
+=============================
+source env/bin/activate
+
+Deactivate the virtual env
+=============================
+deactivate
+
+Install Pyspark in env (https://spark.apache.org/docs/3.3.1/api/python/getting_started/install.html) 
+=============================
+The default distribution uses Hadoop 3.3 and Hive 2.3.
+source env/bin/activate
+pip install pyspark
+
+# to install extra dependencies for a specific component
+# Spark SQL
+pip install pyspark[sql]
+# pandas API on Spark
+pip install pyspark[pandas_on_spark] plotly  # to plot your data, you can install plotly together.
+
+Opening VS code in the WSL project directory
+=============================
+cd pyspark (in this case)
+code .
+
+# When using terminal in VSCode keep in mind you will need to activate virtual env again
+source env/bin/activate
+
+# To run .ipynb files install necessary python and Jupyter extensions in WSL VScode
+# also select the appropriate kernel from the virtualenv we created
+
+
+
+
+
+
+
+
+
