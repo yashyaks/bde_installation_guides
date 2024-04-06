@@ -40,7 +40,7 @@ Launching HBase
 ===============================
 
 # To open HBase Web UI.
-./bin/hbase shell
+./bin/start-hbase.sh 
 # Open http://localhost:16010/ in your browser (installed on windows or wsl)
 # It should display the HBase Web UI.
 
